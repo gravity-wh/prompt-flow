@@ -12,7 +12,7 @@ import json
 from datetime import datetime
 import base64
 
-app = Flask(__name__, static_folder='static', static_url_path='')
+app = Flask(__name__)
 CORS(app)
 
 DATABASE = 'prompts.db'
