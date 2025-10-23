@@ -1,0 +1,398 @@
+/* Streaming Mode Styles */
+
+.streaming-body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: var(--bg-primary);
+}
+
+.streaming-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.streaming-header h1 {
+    font-size: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.back-btn:hover {
+    color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.streaming-controls {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.streaming-controls span {
+    font-weight: 600;
+}
+
+.streaming-container {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.streaming-card {
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.streaming-image-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+}
+
+.streaming-image-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.streaming-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 在详情展开时使用自适应比例 */
+.streaming-card.expanded .streaming-image {
+    object-fit: contain;
+}
+
+.streaming-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.streaming-carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.streaming-carousel-btn.prev {
+    left: 16px;
+}
+
+.streaming-carousel-btn.next {
+    right: 16px;
+}
+
+.streaming-carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.streaming-image-indicators {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.streaming-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.streaming-indicator.active {
+    background: white;
+}
+
+.streaming-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+    padding: 80px 32px 32px;
+    color: white;
+}
+
+.streaming-headline {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding: 16px 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.streaming-description {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 16px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding: 12px 16px;
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.streaming-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.streaming-tag {
+    padding: 6px 16px;
+    background: rgba(99, 102, 241, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(99, 102, 241, 0.6);
+    border-radius: 20px;
+    font-size: 13px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.streaming-detail {
+    background: var(--bg-card);
+    padding: 32px;
+    border-top: 1px solid var(--border-color);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.streaming-card.expanded .streaming-detail {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.detail-section {
+    margin-bottom: 24px;
+}
+
+.detail-section h3 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.detail-item {
+    background: var(--bg-tertiary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.detail-item-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.detail-item-value {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.streaming-prompt-text {
+    background: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border: 1px solid var(--border-color);
+}
+
+.expand-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(99, 102, 241, 0.5);
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.expand-indicator:hover {
+    background: rgba(99, 102, 241, 0.5);
+}
+
+.expand-indicator svg {
+    width: 16px;
+    height: 16px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+.navigation-hints {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 100;
+}
+
+.hint {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.hint:hover {
+    opacity: 1;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.hint svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Loading */
+.streaming-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .streaming-headline {
+        font-size: 24px;
+        padding: 12px 16px;
+        border-radius: 8px;
+    }
+    
+    .streaming-description {
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
+    
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .navigation-hints {
+        display: none;
+    }
+    
+    .streaming-overlay {
+        padding: 60px 20px 20px;
+    }
+    
+    .streaming-detail {
+        padding: 20px;
+    }
+    
+    .streaming-tag {
+        padding: 4px 12px;
+        font-size: 12px;
+    }
+}
